@@ -50,6 +50,17 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Figma Design System specific colors
+        figma: {
+          primary: "#3455DF",
+          secondary: "#4DA8FC",
+          background: "#F8F8F9",
+          foreground: "#001141",
+          muted: "#B1B5C8",
+          border: "#E5E7F2",
+          accent: "#EAEDFC",
+          accentForeground: "#3D5DE0",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -69,6 +80,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
       },
     },
   },

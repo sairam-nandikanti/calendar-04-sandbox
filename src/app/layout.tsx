@@ -2,11 +2,14 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
-  title: "Calendar-04 Sandbox",
-  description: "Testing shadcn/ui calendar-04 component",
+  title: "Calendar-04 Sandbox - Figma Design",
+  description: "Testing shadcn/ui calendar-04 component with Figma design system",
 }
 
 export default function RootLayout({
@@ -16,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} font-inter`}>{children}</body>
     </html>
   )
 }
