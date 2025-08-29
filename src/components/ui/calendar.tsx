@@ -48,7 +48,7 @@ function Calendar({
         day_today: "calendar-cell-current",
         day_outside: "calendar-cell-inactive",
         day_disabled: "calendar-cell-inactive",
-        day_range_middle: "calendar-cell-hover",
+        day_range_middle: "calendar-cell-selected", // Changed: all range dates use same styling
         day_hidden: "invisible",
         ...classNames,
       }}
