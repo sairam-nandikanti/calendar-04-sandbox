@@ -12,6 +12,29 @@ export default function Home() {
           <h1 className="text-5xl font-light leading-tight">Calendar</h1>
         </div>
         
+        {/* Color test section */}
+        <div className="mb-8 p-4 border border-border rounded-lg bg-card">
+          <h3 className="text-lg font-semibold mb-4">Color Test (Figma Design System)</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#3455DF] rounded mb-2"></div>
+              <span className="text-xs">Primary #3455DF</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#4DA8FC] rounded mb-2"></div>
+              <span className="text-xs">Secondary #4DA8FC</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#F8F8F9] border border-border rounded mb-2"></div>
+              <span className="text-xs">Background #F8F8F9</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-[#001141] rounded mb-2"></div>
+              <span className="text-xs text-white">Foreground #001141</span>
+            </div>
+          </div>
+        </div>
+        
         {/* Calendar component */}
         <div className="flex justify-center">
           <Calendar04 />
