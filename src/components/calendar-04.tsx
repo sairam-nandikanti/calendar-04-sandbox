@@ -23,9 +23,9 @@ export function Calendar04() {
 
   return (
     <div className="flex gap-4 flex-wrap">
-      {/* Calendar with range selection only */}
+      {/* Calendar with range selection and month/year selector */}
       <div className="w-[349px] bg-card border border-border rounded-[6px] p-4">
-        <h3 className="mb-4 text-sm font-semibold">Range Selection</h3>
+        <h3 className="mb-4 text-sm font-semibold">Range + Month/Year</h3>
         <Calendar
           mode="range"
           defaultMonth={dateRange?.from}
@@ -33,6 +33,10 @@ export function Calendar04() {
           onSelect={setDateRange}
           className="w-full"
           showOutsideDays={true}
+          enableMonthYearSelection={true}
+          onMonthYearChange={(month, year) => {
+            console.log(`Month/Year changed: ${month + 1}/${year}`)
+          }}
         />
       </div>
 
@@ -49,6 +53,10 @@ export function Calendar04() {
           showTimeSelector={true}
           timeValue={timeValue}
           onTimeChange={setTimeValue}
+          enableMonthYearSelection={true}
+          onMonthYearChange={(month, year) => {
+            console.log(`Month/Year changed: ${month + 1}/${year}`)
+          }}
           timeSelectorProps={{
             format: '24',
             minuteStep: 1,

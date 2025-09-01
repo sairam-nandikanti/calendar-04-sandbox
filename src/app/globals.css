@@ -308,6 +308,9 @@ div.time-selector div.time-cell.time-cell-selected {
   align-items: flex-start;
 }
 
+/* Month/Year Selector Styles */
+/* Removed shadow to match TimeSelector styling */
+
 /* Ensure navigation buttons don't interfere with centering */
 .calendar-nav-button-previous {
   @apply absolute left-1;
