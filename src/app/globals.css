@@ -211,9 +211,8 @@
 
 .time-cell-disabled {
   color: #B1B5C8 !important;
-  background: #F8F8F9 !important;
+  background: #FFFFFF !important;
   cursor: not-allowed !important;
-  opacity: 0.5;
   border-radius: 6px !important;
 }
 
