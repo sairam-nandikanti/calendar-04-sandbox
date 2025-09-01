@@ -6,20 +6,42 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { TimeSelector, type TimeValue, type TimeSelectorProps } from "./time-selector"
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  showTimeSelector?: boolean
+  timeValue?: TimeValue
+  onTimeChange?: (time: TimeValue) => void
+  timeSelectorProps?: Omit<TimeSelectorProps, 'value' | 'onChange'>
+}
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
+  showTimeSelector = false,
+  timeValue,
+  onTimeChange,
+  timeSelectorProps,
   ...props
 }: CalendarProps) {
+  // Validate that time selector is only used with single mode
+  const isRangeMode = props.mode === "range"
+  const shouldShowTimeSelector = showTimeSelector && !isRangeMode
+
+  // Show warning in development if time selector is used with range mode
+  React.useEffect(() => {
+    if (process.env.NODE_ENV === 'development' && showTimeSelector && isRangeMode) {
+      console.warn('TimeSelector can only be used with single date selection mode. Set mode="single" or remove mode prop to use time selector.')
+    }
+  }, [showTimeSelector, isRangeMode])
+
   return (
-    <DayPicker
-      showOutsideDays={showOutsideDays}
-      className={cn("p-4", className)}
-      classNames={{
+    <div className={cn("calendar-with-time", shouldShowTimeSelector && "flex gap-4 items-start")}>
+      <DayPicker
+        showOutsideDays={showOutsideDays}
+        className={className}
+        classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
@@ -31,10 +53,10 @@ function Calendar({
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
-        table: "w-full border-collapse space-y-1",
-        head_row: "flex",
+        table: "w-full border-collapse",
+        head_row: "flex ",
         head_cell: "calendar-weekday w-[45px] h-[45px] flex items-center justify-center",
-        row: "flex w-full mt-2",
+        row: "flex w-full ",
         cell: cn(
           "calendar-cell relative",
           "focus-within:relative focus-within:z-20"
@@ -59,6 +81,14 @@ function Calendar({
       }}
       {...props}
     />
+    {shouldShowTimeSelector && (
+      <TimeSelector
+        value={timeValue}
+        onChange={onTimeChange}
+        {...timeSelectorProps}
+      />
+    )}
+    </div>
   )
 }
 Calendar.displayName = "Calendar"

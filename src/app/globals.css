@@ -60,25 +60,88 @@
   }
 }
 
-/* Custom calendar styles to match Figma design */
+/* Custom calendar styles to match Figma design exactly */
 .calendar-cell {
-  @apply w-[45px] h-[45px] flex items-center justify-center rounded-[6px] text-xs font-medium transition-all duration-200;
+  @apply w-[45px] h-[45px] flex items-center justify-center text-xs font-medium transition-all duration-200;
+  /* Default state: no background, no border, dark text */
+  color: #001141;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
 }
 
+/* Default state - no special styling needed, uses base .calendar-cell */
 .calendar-cell-default {
-  @apply text-foreground hover:bg-accent hover:text-accent-foreground;
+  color: #001141;
+  background: transparent;
 }
 
-.calendar-cell-selected {
-  @apply bg-primary text-primary-foreground;
+/* Hover state */
+.calendar-cell-default:hover {
+  background-color: #EAEDFC !important;
+  color: #3D5DE0 !important;
+  border-radius: 6px;
 }
 
+/* Single date selection - full border radius on all edges */
+.calendar-cell.calendar-cell-default.calendar-cell-selected,
+.calendar-cell.calendar-cell-selected {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+}
+
+/* Override base calendar-cell styles for range dates */
+.calendar-cell.calendar-cell-default.calendar-cell-range-middle,
+.calendar-cell.calendar-cell-range-middle {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 0 !important;
+}
+
+/* First date in range - left border radius only */
+.calendar-cell.calendar-cell-default.calendar-cell-range-start,
+.calendar-cell.calendar-cell-range-start {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 6px 0 0 6px !important;
+}
+
+/* Last date in range - right border radius only */
+.calendar-cell.calendar-cell-default.calendar-cell-range-end,
+.calendar-cell.calendar-cell-range-end {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+/* Single date selection in range mode (when start and end are the same) */
+.calendar-cell.calendar-cell-default.calendar-cell-range-start.calendar-cell-range-end,
+.calendar-cell.calendar-cell-range-start.calendar-cell-range-end {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+}
+
+/* Alternative approach using higher specificity for single date in range mode */
+.calendar-cell[data-range-start="true"][data-range-end="true"] {
+  border-radius: 6px !important;
+}
+
+/* Current date (today) - blue border, blue text, no background */
 .calendar-cell-current {
-  @apply border border-primary bg-primary text-primary-foreground font-semibold;
+  color: #3455DF !important;
+  background: transparent !important;
+  border: 1px solid #3455DF !important;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
+/* Inactive dates (outside current month) - white background, muted text */
 .calendar-cell-inactive {
-  @apply text-muted-foreground bg-background;
+  color: #B1B5C8 !important;
+  background: #FFFFFF !important;
+  border-radius: 6px;
 }
 
 .calendar-cell-hover {
@@ -97,9 +160,153 @@
   @apply text-xs font-medium text-foreground opacity-50;
 }
 
+/* Time Selector Styles - matching Figma design exactly */
+.time-selector {
+  /* Base container styles already applied via className */
+}
+
+.time-selector-header {
+  /* Header styles already applied via className */
+}
+
+.time-selector-grid {
+  /* Grid container styles already applied via className */
+}
+
+/* Time cell base styles */
+.time-cell {
+  /* Base styles already applied via className */
+}
+
+/* Time cell states */
+.time-cell-default {
+  color: #001141;
+  background: transparent;
+  border-radius: 6px !important;
+}
+
+.time-cell-default:hover {
+  background-color: #EAEDFC !important;
+  color: #3D5DE0 !important;
+  border-radius: 6px !important;
+}
+
+.time-cell.time-cell-selected {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+}
+
+.time-cell-selected {
+  background-color: #3455DF !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+}
+
+.time-cell-inactive {
+  color: #B1B5C8 !important;
+  background: #FFFFFF !important;
+  border-radius: 6px !important;
+}
+
+.time-cell-disabled {
+  color: #B1B5C8 !important;
+  background: #F8F8F9 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5;
+  border-radius: 6px !important;
+}
+
+/* Hide scrollbars while keeping functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Time column styling */
+.time-column {
+  min-height: 0; /* Allow flex items to shrink */
+}
+
+/* Enhanced scroll snap behavior */
+.time-column::-webkit-scrollbar {
+  display: none;
+}
+
+.time-column {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Ensure snap alignment works properly */
+.time-cell {
+  scroll-snap-align: start;
+  scroll-margin-top: 1px;
+}
+
+/* Force border-radius on all time cells */
+.time-cell {
+  border-radius: 6px !important;
+}
+
+/* Override any conflicting calendar styles for time cells */
+.time-selector .time-cell {
+  border-radius: 6px !important;
+}
+
+.time-selector .time-cell-selected {
+  border-radius: 6px !important;
+}
+
+/* Ultra-specific selector to override any calendar conflicts */
+div.time-selector div.time-cell.time-cell-selected {
+  border-radius: 6px !important;
+}
+
+/* Ensure Tailwind rounded classes work */
+.time-cell.rounded-\[6px\] {
+  border-radius: 6px !important;
+}
+
+/* Prevent calendar range styles from affecting time cells */
+.time-selector .time-cell:not(.calendar-cell) {
+  border-radius: 6px !important;
+}
+
+/* Make sure time cells never inherit calendar range styles */
+.time-cell,
+.time-cell * {
+  border-radius: 6px !important;
+}
+
+/* Force all time cell states to have rounded corners */
+.time-cell.time-cell-selected,
+.time-cell.time-cell-default,
+.time-cell.time-cell-disabled,
+.time-cell.time-cell-inactive,
+.time-cell:hover,
+.time-cell:focus,
+.time-cell:active {
+  border-radius: 6px !important;
+}
+
+/* Nuclear option: Override everything for time cells */
+[class*="time-cell"] {
+  border-radius: 6px !important;
+}
+
 /* Fix header centering by ensuring proper spacing */
 .calendar-caption {
   @apply flex justify-center pt-1 relative items-center;
+}
+
+/* Align TimeSelector with Calendar - simple approach */
+.calendar-with-time {
+  align-items: flex-start;
 }
 
 /* Ensure navigation buttons don't interfere with centering */
