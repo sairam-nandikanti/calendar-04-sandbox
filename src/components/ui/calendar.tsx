@@ -43,12 +43,13 @@ function Calendar({
           "calendar-cell calendar-cell-default",
           "aria-selected:opacity-100"
         ),
-        day_range_end: "day-range-end",
+        day_range_start: "calendar-cell-range-start",
+        day_range_end: "calendar-cell-range-end",
         day_selected: "calendar-cell-selected",
         day_today: "calendar-cell-current",
         day_outside: "calendar-cell-inactive",
         day_disabled: "calendar-cell-inactive",
-        day_range_middle: "calendar-cell-selected", // Changed: all range dates use same styling
+        day_range_middle: "calendar-cell-range-middle", // New class for range middle dates
         day_hidden: "invisible",
         ...classNames,
       }}
