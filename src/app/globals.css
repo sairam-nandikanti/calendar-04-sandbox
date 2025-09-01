@@ -96,3 +96,17 @@
 .calendar-weekday {
   @apply text-xs font-medium text-foreground opacity-50;
 }
+
+/* Fix header centering by ensuring proper spacing */
+.calendar-caption {
+  @apply flex justify-center pt-1 relative items-center;
+}
+
+/* Ensure navigation buttons don't interfere with centering */
+.calendar-nav-button-previous {
+  @apply absolute left-1;
+}
+
+.calendar-nav-button-next {
+  @apply absolute right-1;
+}
