@@ -9,10 +9,6 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-    # Only allow security updates by ignoring all version updates
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
-    # Only create PRs for security vulnerabilities
+      interval: "daily"
+    # Only allow security updates by ignoring all version update
     open-pull-requests-limit: 10
